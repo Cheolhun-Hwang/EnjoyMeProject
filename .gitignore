@@ -3,3 +3,4 @@ node_modules/
 
 # 와일드카드도 사용가능
 *.log
+package-lock.json
