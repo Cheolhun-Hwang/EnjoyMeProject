@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EnjoyMe - Interactive Media</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/game_question.css' />
+
+    <script src="/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="head">
+
+      </div>
+      <div id="contents" >
+          <div class="cardview" class="container">
+              <form action = "/game/score?qid=ejm<%= qid %>ezs5sxo6h&ql=<%= ql %>" accept-charset="utf-8" name = "game_result" method = "post"> 
+              <% qlist.forEach((item, index)=>{ %>
+                <div id="q_<%= index %>" class="question row">
+                    <p class="qtype col-sm-12">[ <%= item.ql_type %> ]</p>
+                    <p class="qnum col-sm-1">Q<%= (index + 1)  %>. </p>
+                    <%
+                      var qt = item.ql_text+'';
+                    %>
+                    <p class="qtext col-sm-11"><%- qt.replace(/\n/g, '<br /><br />') %> </p>
+                    <div class="radio col-sm-12">
+                      <label><input type="radio" name="q_<%= (index + 1)  %>_select" value='1'><%= item.ql_one %></label>
+                    </div>
+                    <div class="radio col-sm-12">
+                      <label><input type="radio" name="q_<%= (index + 1)  %>_select" value='2'><%= item.ql_two %></label>
+                    </div>
+                    <div class="radio col-sm-12">
+                      <label><input type="radio" name="q_<%= (index + 1)  %>_select" value='3'><%= item.ql_three %></label>
+                    </div>
+                    <div class="radio col-sm-12">
+                      <label><input type="radio" name="q_<%= (index + 1)  %>_select" value='4'><%= item.ql_four %></label>
+                    </div>
+                </div>
+              <% }); %>
+              <input type = "submit" value = "정답 확인" class="btn btn-success"/>
+              </form>
+          </div>
+          
+      </div>
+    </div>
+  </body>
+  <script>
+    
+  </script>
+</html>

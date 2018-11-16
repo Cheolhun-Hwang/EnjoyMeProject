@@ -1,0 +1,76 @@
+@media screen and (max-width: 454px) {
+     div.cardview{
+          margin-top: 50px;
+          display: inline-block;
+          padding-top: 3%;
+          padding-bottom: 3%;
+          padding-left: 0.5%;
+          padding-right: 0.5%;
+          background: #ffffff;
+          border-radius : 15px;
+          width: 330px;
+          border: #000000 4px solid;
+          box-shadow: 5px 5px 10px #777777;
+     }
+     
+ }
+ @media screen and (min-width: 454px) and (max-width: 667px) {
+     div.cardview{
+          margin-top: 50px;
+          display: inline-block;
+          padding-top: 3%;
+          padding-bottom: 3%;
+          padding-left: 0.5%;
+          padding-right: 0.5%;
+          background: #ffffff;
+          border-radius : 15px;
+          width: 450px;
+          border: #000000 4px solid;
+          box-shadow: 5px 5px 10px #777777;
+     }
+ }
+ @media screen and (min-width: 667px){
+     div.cardview{
+          margin-top: 50px;
+          margin-bottom: 150px;
+          display: inline-block;
+          padding-top: 3%;
+          padding-bottom: 3%;
+          padding-left: 0.5%;
+          padding-right: 0.5%;
+          background: #ffffff;
+          border-radius : 15px;
+          width: 650px;
+          border: #000000 4px solid;
+          box-shadow: 5px 5px 10px #777777;
+     }
+
+     div.question{
+          padding-left: 25px;
+          padding-right: 25px;
+     }
+
+     p.qtype{
+          text-align: left;
+          font-size: 0.9em;
+          color: #777777;
+     }
+
+     p.qnum{
+          text-align: right;
+          font-size: 1.6em;
+          color: #000000;
+          font-weight: bold;
+     }
+
+     p.qtext{
+          text-align: center;
+          font-size: 1.05em;
+          color: #000000;
+          font-weight: bold;
+     }
+
+     input[type='submit']{
+          margin-top: 60px;
+     }
+ }

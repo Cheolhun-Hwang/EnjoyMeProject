@@ -1,57 +1,104 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>EnjoyMe - Interactive Media</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/game_view.css' />
+
+    <script src="/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <h4><%= category %></h4>
+    <div id="wrapper">
+      <div id="head">
 
-    <div id="player"></div>
-
-    <p>준비되셨으면 영상을 시청해주세요!</p>
-    <script>
-    //Make iframe.
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    //configure
-    var player;
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        height: '480',
-        width: '854',
-        videoId: '<%= uid %>',
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    }
-
-    //onReady Event
-    function onPlayerReady(event) {
-      // event.target.playVideo(); //start
-    }
-
-    var done = false;
-    function onPlayerStateChange(event) {
-      if (event.data == YT.PlayerState.PLAYING && !done) {
-        // setTimeout(stopVideo, 6000);
-        done = true;
-      }
-
-      if(event.data == 0 && done){
-        alert("시청을 완료 했습니다.");
-      }
-    }
-    function stopVideo() {
-      player.stopVideo();
-    }
-    </script>
-
+      </div>
+      <div id="contents">
+          <div id='movie_layout'>
+            <p id="movie_layout_category" class="category_text">Category is "<%= category %>"</p>
+            <h1 id="movie_layout_title" class="main_text" ><%= title %></h1>
+            
+            <div class="center">
+                <div id="player"></div>
+            </div>
+      
+            <p class="comment">* 준비되셨으면 영상을 시청해주세요!</p>
+            <script>
+              var in_width =  window.outerWidth; // 브라우저 윈도우 두께를 제외한 실질적 가로 길이;
+              var w, h;
+      
+              if(in_width < 516){
+                w = '300';
+                h = '170';
+              }else if(in_width < 750){
+                w = '426';
+                h = '240';
+              }else{
+                w = '640';
+                h = '360';
+              }
+      
+              //Make iframe.
+              var tag = document.createElement('script');
+              tag.src = "https://www.youtube.com/iframe_api";
+              var firstScriptTag = document.getElementsByTagName('script')[0];
+              firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+          
+              //configure
+              var player;
+              function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                  height: h,
+                  width: w,
+                  videoId: '<%= uid %>',
+                  events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                  }
+                });
+              }
+          
+              //onReady Event
+              function onPlayerReady(event) {
+                // event.target.playVideo(); //start
+              }
+          
+              var done = false;
+              function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.PLAYING && !done) {
+                  // setTimeout(stopVideo, 6000);
+                  done = true;
+                }
+          
+                if(event.data == 0 && done){
+                  var currentLocation = window.location;
+                  window.location.replace("/game/q?qid=ejm<%= qid %>ezs5sxo6h");
+                }
+              }
+              function stopVideo() {
+                player.stopVideo();
+              }
+      
+              window.addEventListener('resize', (event)=>{
+                var in_width =  window.outerWidth;
+                var w, h;
+      
+                if(in_width < 516){
+                  w = '300';
+                  h = '170';
+                }else if(in_width < 750){
+                  w = '426';
+                  h = '240';
+                }else{
+                  w = '640';
+                  h = '360';
+                }
+      
+                player.setSize(w, h);
+              });
+            </script>
+          </div>
+      </div>
+    </div>
   </body>
 </html>
